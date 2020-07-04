@@ -1,0 +1,22 @@
+version: "3"
+services:
+  user:
+    container_name: user.app
+    build: ./user
+    ports:
+     - "8080:80"
+  login:
+    container_name: login.app
+    build: ./login
+    ports:
+     - "8090:80"
+  shopping:
+    container_name: shopping.app
+    build: ./shopping
+    ports:
+     - "8070:80"
+  delivery:
+    container_name: delivery.app
+    build: ./delivery
+    ports:
+     - "8060:80"
