@@ -1,0 +1,29 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+container:
+  image: aztfmod/rover:2009.0210
+  options: --user 0 --name rover-container -v /usr/bin/docker:/tmp/docker:ro
+  env:
+    TF_CLI_ARGS: '-no-color'
+    ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+    ARM_CLIENT_ID: $(ARM_CLIENT_ID)
+    ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
+    ARM_TENANT_ID: $(ARM_TENANT_ID)
+
+steps:
+- script: az account list --output table
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
